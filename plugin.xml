@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="vocalyx-plugin-keyboard-manager"
+	version="0.0.1">
+
+	<name>KeyboardManagerPlugin</name>
+	<description>Keyboard manager plugin</description>
+
+	<js-module src="www/keyboards-manager.js" name="KeyboardsManager">
+		<clobbers target="capanovi.plugins.KeyboardsManager"/>
+	</js-module>
+
+	<js-module src="www/keyboard-folder.js" name="KeyboardFolder">
+	</js-module>
+
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="KeyboardsManager">
+				<param name="android-package" value="com.capanovi.KeyboardsManager" onload="true"/>
+			</feature>
+		</config-file>
+
+		<source-file src="src/android/KeyboardsManager.java" target-dir="src/com/capanovi"/>
+		<source-file src="src/android/ZippedKeyboard.java" target-dir="src/com/capanovi"/>
+		<source-file src="src/android/ZippedKeyboardInstaller.java" target-dir="src/com/capanovi"/>
+		<source-file src="src/android/ZippedKeyboardParser.java" target-dir="src/com/capanovi"/>
+		<source-file src="src/android/ZippedKeyboardWriter.java" target-dir="src/com/capanovi"/>
+		<source-file src="src/android/ZippedKeyboardDownloader.java" target-dir="src/com/capanovi"/>
+	</platform>
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="KeyboardsManager">
+				<param name="ios-package" value="KeyboardsManager"/>
+				<param name="onload" value="true"/>
+			</feature>
+		</config-file>
+		<header-file src="src/ios/KeyboardsManager.h"/>
+		<source-file src="src/ios/KeyboardsManager.m"/>
+		<header-file src="src/ios/ZippedKeyboardParser.h"/>
+		<source-file src="src/ios/ZippedKeyboardParser.m"/>
+		<header-file src="src/ios/ZippedKeyboardInstaller.h"/>
+		<source-file src="src/ios/ZippedKeyboardInstaller.m"/>
+		<header-file src="src/ios/ZippedKeyboardWriter.h"/>
+		<source-file src="src/ios/ZippedKeyboardWriter.m"/>
+		<header-file src="src/ios/ZippedKeyboard.h"/>
+		<source-file src="src/ios/ZippedKeyboard.m"/>
+		<header-file src="src/ios/KeyboardHelper.h"/>
+		<source-file src="src/ios/KeyboardHelper.m"/>
+	</platform>
+</plugin>
