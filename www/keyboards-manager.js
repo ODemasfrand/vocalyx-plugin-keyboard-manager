@@ -10,10 +10,19 @@ KeyboardsManager.listEmbeddedKeyboards = function(){
 
 		function success(result){
 			if(device.platform == 'iOS')
+			{
 				result = result
 					.map(decode)
-					.map(JSON.parse);
+					.map(JSON.parse)
+					.map(function(result){
+						if (result.extras)
+						{
+							result.extras = JSON.parse(decode(result.extras));
+						}
 
+						return result;
+					});
+				}
 			resolve(result);
 		}
 	});
